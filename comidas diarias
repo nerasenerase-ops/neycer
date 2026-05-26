@@ -1,0 +1,975 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="es" class="h-full bg-zinc-950 text-zinc-100"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;FitPlan 1200 - Calendario Nutricional Semanal&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Icons --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>fontFamily: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>sans: ['Plus Jakarta Sans', 'sans-serif'],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>colors: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>brand: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>50: '#f0fdf4',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>100: '#dcfce7',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>500: '#22c55e',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>600: '#16a34a',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>700: '#15803d',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>950: '#052e16',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- React and Babel for single file runtime --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Custom scrollbar for premium look */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-track {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #18181b;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #3f3f46;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 3px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #52525b;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="h-full font-sans antialiased selection:bg-brand-500 selection:text-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root" class="min-h-screen flex flex-col"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState, useEffect, useMemo } = React;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Base nutritional constant definitions</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const INGREDIENTS_BASE = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>chicken: { name: 'Pechuga de pollo (cruda)', kcal: 120, prot: 26, carb: 0, fat: 1.5 }, // per 100g</p>
+<p class="p1"><span class="Apple-converted-space">            </span>beef: { name: 'Bife de carne magra (cruda)', kcal: 140, prot: 22, carb: 0, fat: 5.5 }, // per 100g</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fish: { name: 'Pescado blanco (crudo)', kcal: 90, prot: 20, carb: 0, fat: 1 }, // per 100g</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bread: { name: 'Pan integral (1 rodaja)', kcal: 45, prot: 2, carb: 9, fat: 0.5 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>apple: { name: 'Manzana mediana', kcal: 72, prot: 0.3, carb: 19, fat: 0.2 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>banana: { name: 'Plátano mediano', kcal: 105, prot: 1.3, carb: 27, fat: 0.3 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>oliveOil: { name: 'Aceite de oliva (1 cdta)', kcal: 40, prot: 0, carb: 0, fat: 4.5 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>camote: { name: 'Camote cocido (100g)', kcal: 86, prot: 1.6, carb: 20, fat: 0.1 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>spinach: { name: 'Vegetales verdes (espinaca/brócoli/espárragos)', kcal: 25, prot: 2, carb: 4, fat: 0.2 }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const SUPPLEMETS = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>f1: { name: 'F1 Herbalife', kcal: 90, prot: 9, carb: 13, fat: 1 }, // simple base</p>
+<p class="p1"><span class="Apple-converted-space">            </span>f1_shake: { name: 'Batido F1 Combinado (F1 + Proteína/Colágeno)', kcal: 180, prot: 20, carb: 14, fat: 2.5 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cr7: { name: 'CR7 Drive', kcal: 50, prot: 0, carb: 13, fat: 0 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>rebuild: { name: 'Rebuild Strength (2 cuch.)', kcal: 190, prot: 25, carb: 18, fat: 1.5 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tea: { name: 'Té verde + Guaraná Herbalife', kcal: 5, prot: 0, carb: 1, fat: 0 }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const DAYS_CONFIG = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Lunes': { type: 'A', name: 'Pollo y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Martes': { type: 'B', name: 'Carne y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Miércoles': { type: 'A', name: 'Pollo y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Jueves': { type: 'B', name: 'Carne y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Viernes': { type: 'A', name: 'Pollo y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Sábado': { type: 'B', name: 'Carne y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'Domingo': { type: 'A', name: 'Pollo y Pescado' },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function App() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [selectedDay, setSelectedDay] = useState('Lunes');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard', 'shopping', 'settings'</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Customizable portion sizes (g)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [portions, setPortions] = useState({</p>
+<p class="p1"><span class="Apple-converted-space">                </span>chicken: 150,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>beef: 150,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fish: 150</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Keep track of checked meals to compute current eaten macros</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Key format: 'Day-MealIndex'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [completedMeals, setCompletedMeals] = useState({});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Reset or populate completed meals on load</p>
+<p class="p1"><span class="Apple-converted-space">            </span>useEffect(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const stored = localStorage.getItem('completed_meals');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (stored) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>setCompletedMeals(JSON.parse(stored));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>console.error("Error reading stored meals", e);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, []);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const toggleMeal = (day, mealIndex) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const key = `${day}-${mealIndex}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const updated = {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>...completedMeals,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>[key]: !completedMeals[key]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setCompletedMeals(updated);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem('completed_meals', JSON.stringify(updated));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resetDayProgress = (day) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const updated = { ...completedMeals };</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Object.keys(updated).forEach(key =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (key.startsWith(`${day}-`)) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>delete updated[key];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setCompletedMeals(updated);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem('completed_meals', JSON.stringify(updated));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate precise macros based on formulas</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const getMealData = (day, type, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const chg = portions.chicken / 100;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const bfg = portions.beef / 100;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const fsg = portions.fish / 100;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (type === 'A') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Day A: Chicken &amp; Fish</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>switch(index) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 0: // Al despertar</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Al despertar',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '06:30',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Té verde + Guaraná Herbalife para activar el metabolismo.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [SUPPLEMETS.tea.name],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.tea.kcal, prot: SUPPLEMETS.tea.prot, carb: SUPPLEMETS.tea.carb, fat: SUPPLEMETS.tea.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-mug-hot', color: 'text-emerald-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 1: // Desayuno</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Desayuno Premium',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '07:00',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Batido Nutricional reconstituyente con fórmula avanzada de micro-nutrientes.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'F1 Herbalife (2 cucharadas)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Colágeno Verisol',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Immunity Essential',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Simple Probiotic',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Herbalifeline (Omega 3 - 1 cápsula)'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.f1_shake.kcal, prot: SUPPLEMETS.f1_shake.prot, carb: SUPPLEMETS.f1_shake.carb, fat: SUPPLEMETS.f1_shake.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-blender', color: 'text-purple-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 2: // Durante el entreno</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Durante el entreno',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '08:30',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Bebida hipotónica para mantener la hidratación y el glucógeno muscular.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [SUPPLEMETS.cr7.name + ' (1 porción en 500ml agua)'],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.cr7.kcal, prot: SUPPLEMETS.cr7.prot, carb: SUPPLEMETS.cr7.carb, fat: SUPPLEMETS.cr7.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-bottle-water', color: 'text-sky-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 3: // Post-Entreno</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Post-Entreno',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '09:45',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Proteína de rápida y lenta absorción con aporte de carbohidratos controlados para recuperación muscular.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [SUPPLEMETS.rebuild.name],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.rebuild.kcal, prot: SUPPLEMETS.rebuild.prot, carb: SUPPLEMETS.rebuild.carb, fat: SUPPLEMETS.rebuild.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-dumbbell', color: 'text-red-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 4: // Almuerzo</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const chKcal = Math.round(INGREDIENTS_BASE.chicken.kcal * chg + INGREDIENTS_BASE.bread.kcal + INGREDIENTS_BASE.spinach.kcal);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const chProt = Math.round(INGREDIENTS_BASE.chicken.prot * chg + INGREDIENTS_BASE.bread.prot + INGREDIENTS_BASE.spinach.prot);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const chCarb = Math.round(INGREDIENTS_BASE.chicken.carb * chg + INGREDIENTS_BASE.bread.carb + INGREDIENTS_BASE.spinach.carb);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const chFat = Math.round(INGREDIENTS_BASE.chicken.fat * chg + INGREDIENTS_BASE.bread.fat + INGREDIENTS_BASE.spinach.fat);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Almuerzo Sólido',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '13:00',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Plato balanceado de digestión media con carbohidrato complejo.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>`${portions.chicken}g de pechuga de pollo a la plancha (pesado en crudo)`,</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'1 rodaja de pan integral premium (40-45 kcal)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Espinacas o brócoli al vapor (libres / sin límite)'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: chKcal, prot: chProt, carb: chCarb, fat: chFat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-utensils', color: 'text-amber-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 5: // Media Tarde</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtAKcal = SUPPLEMETS.f1.kcal + INGREDIENTS_BASE.apple.kcal;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtAProt = SUPPLEMETS.f1.prot + INGREDIENTS_BASE.apple.prot;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtACarb = SUPPLEMETS.f1.carb + INGREDIENTS_BASE.apple.carb;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtAFat = SUPPLEMETS.f1.fat + INGREDIENTS_BASE.apple.fat;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Media Tarde',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '16:30',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Colación ligera de batido de agua con fibra natural.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Batido F1 Herbalife (1 porción simple, solo agua)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'1 Manzana mediana en rodajas'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: Math.round(mtAKcal), prot: Math.round(mtAProt), carb: Math.round(mtACarb), fat: Math.round(mtAFat),</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-apple-whole', color: 'text-green-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 6: // Cena</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnAKcal = Math.round(INGREDIENTS_BASE.fish.kcal * fsg + INGREDIENTS_BASE.camote.kcal + INGREDIENTS_BASE.spinach.kcal);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnAProt = Math.round(INGREDIENTS_BASE.fish.prot * fsg + INGREDIENTS_BASE.camote.prot + INGREDIENTS_BASE.spinach.prot);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnACarb = Math.round(INGREDIENTS_BASE.fish.carb * fsg + INGREDIENTS_BASE.camote.carb + INGREDIENTS_BASE.spinach.carb);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnAFat = Math.round(INGREDIENTS_BASE.fish.fat * fsg + INGREDIENTS_BASE.camote.fat + INGREDIENTS_BASE.spinach.fat);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Cena Liviana',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '20:00',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Proteína hipocalórica de fácil absorción nocturna.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>`${portions.fish}g de pescado blanco a la plancha o al horno`,</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'100g de camote cocido (o 1/2 plátano mediano)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Vegetales verdes libres'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: cnAKcal, prot: cnAProt, carb: cnACarb, fat: cnAFat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-cloud-moon', color: 'text-indigo-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>default: return null;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Day B: Beef &amp; Fish</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>switch(index) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 0:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Al despertar',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '06:30',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Té verde + Guaraná Herbalife para activar el metabolismo.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [SUPPLEMETS.tea.name],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.tea.kcal, prot: SUPPLEMETS.tea.prot, carb: SUPPLEMETS.tea.carb, fat: SUPPLEMETS.tea.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-mug-hot', color: 'text-emerald-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 1:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Desayuno Premium',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '07:00',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Batido Nutricional reconstituyente con fórmula avanzada de micro-nutrientes.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'F1 Herbalife (2 cucharadas)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Colágeno Verisol',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Immunity Essential',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Simple Probiotic',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Herbalifeline (Omega 3 - 1 cápsula)'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.f1_shake.kcal, prot: SUPPLEMETS.f1_shake.prot, carb: SUPPLEMETS.f1_shake.carb, fat: SUPPLEMETS.f1_shake.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-blender', color: 'text-purple-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 2:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Durante el entreno',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '08:30',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Bebida hipotónica para mantener la hidratación y el glucógeno muscular.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [SUPPLEMETS.cr7.name + ' (1 porción en 500ml agua)'],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.cr7.kcal, prot: SUPPLEMETS.cr7.prot, carb: SUPPLEMETS.cr7.carb, fat: SUPPLEMETS.cr7.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-bottle-water', color: 'text-sky-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 3:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Post-Entreno',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '09:45',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Proteína de rápida y lenta absorción con aporte de carbohidratos controlados para recuperación muscular.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [SUPPLEMETS.rebuild.name],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: SUPPLEMETS.rebuild.kcal, prot: SUPPLEMETS.rebuild.prot, carb: SUPPLEMETS.rebuild.carb, fat: SUPPLEMETS.rebuild.fat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-dumbbell', color: 'text-red-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 4: // Almuerzo Carne</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const beKcal = Math.round(INGREDIENTS_BASE.beef.kcal * bfg + INGREDIENTS_BASE.oliveOil.kcal + INGREDIENTS_BASE.spinach.kcal);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const beProt = Math.round(INGREDIENTS_BASE.beef.prot * bfg + INGREDIENTS_BASE.oliveOil.prot + INGREDIENTS_BASE.spinach.prot);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const beCarb = Math.round(INGREDIENTS_BASE.beef.carb * bfg + INGREDIENTS_BASE.oliveOil.carb + INGREDIENTS_BASE.spinach.carb);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const beFat = Math.round(INGREDIENTS_BASE.beef.fat * bfg + INGREDIENTS_BASE.oliveOil.fat + INGREDIENTS_BASE.spinach.fat);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Almuerzo Sólido',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '13:00',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Aporte de grasas saludables de origen animal y vegetal. Cero carbohidratos almidonados hoy.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>`${portions.beef}g de bife de carne magra a la plancha (pesado en crudo)`,</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Ensalada verde grande (lechuga, pepino)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'1 cucharadita de aceite de oliva (grasas sanas)'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: beKcal, prot: beProt, carb: beCarb, fat: beFat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-utensils', color: 'text-amber-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 5: // Media Tarde Banano</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtBKcal = SUPPLEMETS.f1.kcal + (INGREDIENTS_BASE.banana.kcal / 2);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtBProt = SUPPLEMETS.f1.prot + (INGREDIENTS_BASE.banana.prot / 2);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtBCarb = SUPPLEMETS.f1.carb + (INGREDIENTS_BASE.banana.carb / 2);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const mtBFat = SUPPLEMETS.f1.fat + (INGREDIENTS_BASE.banana.fat / 2);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Media Tarde',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '16:30',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Carbohidrato de rápida recarga junto con proteína limpia.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Batido F1 Herbalife (1 porción simple, solo agua)',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'1/2 Banano mediano en rodajas'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: Math.round(mtBKcal), prot: Math.round(mtBProt), carb: Math.round(mtBCarb), fat: Math.round(mtBFat),</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-apple-whole', color: 'text-green-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>case 6: // Cena Pescado con Manzana</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnBKcal = Math.round(INGREDIENTS_BASE.fish.kcal * fsg + INGREDIENTS_BASE.apple.kcal + INGREDIENTS_BASE.spinach.kcal);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnBProt = Math.round(INGREDIENTS_BASE.fish.prot * fsg + INGREDIENTS_BASE.apple.prot + INGREDIENTS_BASE.spinach.prot);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnBCarb = Math.round(INGREDIENTS_BASE.fish.carb * fsg + INGREDIENTS_BASE.apple.carb + INGREDIENTS_BASE.spinach.carb);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const cnBFat = Math.round(INGREDIENTS_BASE.fish.fat * fsg + INGREDIENTS_BASE.apple.fat + INGREDIENTS_BASE.spinach.fat);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name: 'Cena Liviana',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>time: '20:00',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>description: 'Pescado blanco para una digestión ultraligera antes del descanso nocturno.',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>items: [</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>`${portions.fish}g de pescado blanco a la plancha`,</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'1 Manzana mediana',</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>'Ensalada de espárragos o vegetales verdes libres'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>kcal: cnBKcal, prot: cnBProt, carb: cnBCarb, fat: cnBFat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>icon: 'fa-cloud-moon', color: 'text-indigo-400'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>default: return null;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const MEALS_COUNT = 7;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Compute current metrics for the selected day</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const metrics = useMemo(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const type = DAYS_CONFIG[selectedDay].type;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let totalKcal = 0, totalProt = 0, totalCarb = 0, totalFat = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let eatenKcal = 0, eatenProt = 0, eatenCarb = 0, eatenFat = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>for (let i = 0; i &lt; MEALS_COUNT; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const m = getMealData(selectedDay, type, i);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (m) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>totalKcal += m.kcal;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>totalProt += m.prot;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>totalCarb += m.carb;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>totalFat += m.fat;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (completedMeals[`${selectedDay}-${i}`]) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>eatenKcal += m.kcal;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>eatenProt += m.prot;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>eatenCarb += m.carb;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>eatenFat += m.fat;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>total: { kcal: totalKcal, prot: totalProt, carb: totalCarb, fat: totalFat },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>eaten: { kcal: eatenKcal, prot: eatenProt, carb: eatenCarb, fat: eatenFat },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pct: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>kcal: totalKcal ? Math.round((eatenKcal / totalKcal) * 100) : 0,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>prot: totalProt ? Math.round((eatenProt / totalProt) * 100) : 0,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>carb: totalCarb ? Math.round((eatenCarb / totalCarb) * 100) : 0,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fat: totalFat ? Math.round((eatenFat / totalFat) * 100) : 0,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, [selectedDay, portions, completedMeals]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate overall list of ingredients to buy based on a selected target of days</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const shoppingList = useMemo(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let chickenGrams = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let beefGrams = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let fishGrams = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let breadSlices = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let apples = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let bananas = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let sweetPotatoGrams = 0; // camote</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Herbalife supplement servings</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let f1Servings = 0;<span class="Apple-converted-space">      </span>// 1 shake (breakfast as shake mixture, 1 as mid afternoon shake)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let teaServings = 0; <span class="Apple-converted-space">    </span>// al despertar</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let cr7Servings = 0; <span class="Apple-converted-space">    </span>// entreno</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let rebuildServings = 0; // post-entreno</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let omegaCaps = 0; <span class="Apple-converted-space">      </span>// caps</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>Object.keys(DAYS_CONFIG).forEach(dayName =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const type = DAYS_CONFIG[dayName].type;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (type === 'A') {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>chickenGrams += portions.chicken;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fishGrams += portions.fish;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>breadSlices += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>apples += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>sweetPotatoGrams += 100;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>f1Servings += 2; // 1 inside breakfast shake + 1 inside afternoon snack</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>teaServings += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cr7Servings += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>rebuildServings += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>omegaCaps += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>beefGrams += portions.beef;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fishGrams += portions.fish;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>apples += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>bananas += 1; // 1/2 banana for snack, and 1/2 inside something else/avg calculation</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>f1Servings += 2;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>teaServings += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cr7Servings += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>rebuildServings += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>omegaCaps += 1;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>fresh: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Pechuga de Pollo limpia', qty: `${(chickenGrams/1000).toFixed(2)} kg`, detail: 'Pesar en crudo de preferencia' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Bife o lomo de res magro', qty: `${(beefGrams/1000).toFixed(2)} kg`, detail: 'Cortes bajos en grasa' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Pescado blanco (Merluza, Tilapia, Lenguado)', qty: `${(fishGrams/1000).toFixed(2)} kg`, detail: 'Filetes limpios' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Pan integral de molde', qty: `${breadSlices} rodajas`, detail: 'Bajo en azúcar añadido' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Manzanas medianas', qty: `${apples} unidades`, detail: 'Verde o roja' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Plátanos (Banano)', qty: `${Math.ceil(bananas)} unidades`, detail: 'Maduración media' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Camote o Batata dulce', qty: `${sweetPotatoGrams} g`, detail: 'Hervir o asar al horno' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Verduras verdes variadas', qty: 'Abundante', detail: 'Espinacas frescas, brócoli, lechuga romana, pepinos y espárragos' }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>supplements: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'F1 Herbalife (Fórmula 1)', qty: `${f1Servings} porciones`, detail: 'Aprox. 1.2 tarros estándar' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Rebuild Strength', qty: `${rebuildServings} porciones`, detail: 'Aprox. 0.7 tarro estándar' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'CR7 Drive', qty: `${cr7Servings} porciones`, detail: 'Excelente para rendimiento' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Té Verde + Guaraná Herbalife', qty: `${teaServings} tazas`, detail: 'Termogénico natural' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Colágeno Verisol', qty: '7 porciones', detail: 'Mezclar en el batido F1' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Immunity Essential + Probiotic', qty: '7 porciones c/u', detail: 'Soporte digestivo e inmunológico' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ name: 'Herbalifeline (Omega 3)', qty: `${omegaCaps} cápsulas`, detail: 'Ácidos grasos esenciales esenciales' }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, [portions]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex-1 flex flex-col md:flex-row min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{/* Sidebar Navigation */}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;aside className="w-full md:w-80 bg-zinc-900 border-b md:border-b-0 md:border-r border-zinc-800 flex flex-col p-6 space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex items-center space-x-3 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="p-2 bg-brand-500 rounded-xl text-zinc-950 flex items-center justify-center shadow-lg shadow-brand-500/10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;i className="fa-solid fa-calendar-check text-xl"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h1 className="text-xl font-bold tracking-tight"&gt;NutriPlan 1200&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p className="text-xs text-zinc-400"&gt;Diseño Optimizado • 1200 kcal &amp; 140g Proteína&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* App Navigation Tabs */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;nav className="flex flex-row md:flex-col gap-2 p-1 md:p-0 bg-zinc-950 md:bg-transparent rounded-lg md:rounded-none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>onClick={() =&gt; setActiveTab('dashboard')}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>className={`flex-1 md:flex-none flex items-center justify-center md:justify-start space-x-3 px-4 py-3 rounded-xl transition duration-200 ${activeTab === 'dashboard' ? 'bg-brand-500 text-zinc-950 font-semibold' : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'}`}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;i className="fa-solid fa-kitchen-set text-lg"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="hidden sm:inline-block md:inline-block text-sm"&gt;Mi Menú Diario&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>onClick={() =&gt; setActiveTab('shopping')}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>className={`flex-1 md:flex-none flex items-center justify-center md:justify-start space-x-3 px-4 py-3 rounded-xl transition duration-200 ${activeTab === 'shopping' ? 'bg-brand-500 text-zinc-950 font-semibold' : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'}`}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;i className="fa-solid fa-basket-shopping text-lg"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="hidden sm:inline-block md:inline-block text-sm"&gt;Lista de Compras&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>onClick={() =&gt; setActiveTab('settings')}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>className={`flex-1 md:flex-none flex items-center justify-center md:justify-start space-x-3 px-4 py-3 rounded-xl transition duration-200 ${activeTab === 'settings' ? 'bg-brand-500 text-zinc-950 font-semibold' : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'}`}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;i className="fa-solid fa-sliders text-lg"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="hidden sm:inline-block md:inline-block text-sm"&gt;Personalizar Gramaje&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* Current Plan Overview Widget */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="hidden md:block bg-zinc-950 p-4 rounded-2xl border border-zinc-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex justify-between items-center mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider"&gt;Macros Meta&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="px-2 py-0.5 bg-brand-950 text-brand-500 text-[10px] font-bold rounded-full"&gt;Alto en Prot&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex justify-between text-xs mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span className="text-zinc-400"&gt;🔥 Energía&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span className="text-zinc-200 font-bold"&gt;~1200 kcal&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="h-full bg-brand-500" style={{ width: '100%' }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex justify-between text-xs mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span className="text-zinc-400"&gt;🥩 Proteína&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span className="text-zinc-200 font-bold"&gt;140g (47%)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="h-full bg-sky-400" style={{ width: '100%' }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex justify-between text-xs mb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span className="text-zinc-400"&gt;🌾 Carbohidratos&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span className="text-zinc-200 font-bold"&gt;~105-110g (35%)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="h-full bg-amber-400" style={{ width: '100%' }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* Footer Info */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="hidden md:block mt-auto pt-6 text-center border-t border-zinc-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span className="text-[10px] text-zinc-500"&gt;Diseñado con enfoque metabólico&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/aside&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{/* Main Content Area */}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;main className="flex-1 bg-zinc-950 flex flex-col overflow-y-auto"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* Header with week calendar selection */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-10 px-6 py-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-xs font-bold text-brand-500 tracking-wider uppercase"&gt;PROGRAMACIÓN SEMANAL&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h2 className="text-2xl font-bold tracking-tight"&gt;Calendario Interactivo&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>{/* Horizontal days picker */}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 gap-1.5 max-w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{Object.keys(DAYS_CONFIG).map((day) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>const isActive = selectedDay === day;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>const type = DAYS_CONFIG[day].type;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>key={day}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onClick={() =&gt; setSelectedDay(day)}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className={`flex-shrink-0 px-3 py-2 rounded-xl transition duration-150 text-xs flex flex-col items-center min-w-[70px] ${</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>isActive<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>? 'bg-brand-500 text-zinc-950 font-bold shadow-lg shadow-brand-500/15'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>: 'bg-zinc-800 text-zinc-300 hover:bg-zinc-750'</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;{day.slice(0, 3)}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className={`text-[10px] ${isActive ? 'text-zinc-800 font-semibold' : 'text-zinc-500 font-normal'}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>Día {type}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>})}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="flex-1 p-6 max-w-7xl w-full mx-auto space-y-6"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{/* TAB: DASHBOARD */}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{activeTab === 'dashboard' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{/* Daily Day Information Banner */}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-gradient-to-r from-zinc-900 to-zinc-850 p-6 rounded-3xl border border-zinc-800 shadow-xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex items-center space-x-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-2xl font-black text-white"&gt;{selectedDay}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className={`px-2.5 py-1 text-xs font-extrabold rounded-full ${</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>DAYS_CONFIG[selectedDay].type === 'A'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>? 'bg-emerald-950 text-emerald-400 border border-emerald-800'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>: 'bg-amber-950 text-amber-400 border border-amber-800'</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>Menú Tipo {DAYS_CONFIG[selectedDay].type} (Días de {DAYS_CONFIG[selectedDay].name})</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p className="text-sm text-zinc-400 max-w-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{DAYS_CONFIG[selectedDay].type === 'A'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>? 'Hoy priorizamos pollo en el almuerzo y pescado blanco en la cena. Menor contenido graso, ideal para ajustar calorías.'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>: 'Hoy incluimos bife de carne magra. Compensamos la grasa de la carne eliminando el pan del almuerzo.'</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>onClick={() =&gt; resetDayProgress(selectedDay)}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 active:scale-95 transition text-xs font-semibold text-zinc-200 rounded-xl flex items-center space-x-2 border border-zinc-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-rotate-left"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span&gt;Reiniciar Progreso de Hoy&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{/* Real-time Macro Counters Widget */}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="grid grid-cols-2 lg:grid-cols-4 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Kcal Box */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-xs text-zinc-400 font-medium"&gt;Energía&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="my-2 flex items-baseline space-x-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-2xl font-bold text-white"&gt;{metrics.eaten.kcal}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-xs text-zinc-500"&gt;/ {metrics.total.kcal} kcal&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="bg-brand-500 h-full transition-all duration-350" style={{ width: `${Math.min(metrics.pct.kcal, 100)}%` }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-[10px] text-right text-brand-400 font-semibold mt-1"&gt;{metrics.pct.kcal}%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-fire text-zinc-800/20 text-5xl absolute right-2 bottom-6 pointer-events-none"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Protein Box */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-xs text-zinc-400 font-medium"&gt;Proteínas&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="my-2 flex items-baseline space-x-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-2xl font-bold text-sky-400"&gt;{metrics.eaten.prot}g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-xs text-zinc-500"&gt;/ {metrics.total.prot}g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="bg-sky-400 h-full transition-all duration-350" style={{ width: `${Math.min(metrics.pct.prot, 100)}%` }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-[10px] text-right text-sky-400 font-semibold mt-1"&gt;{metrics.pct.prot}%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-egg text-zinc-800/20 text-5xl absolute right-2 bottom-6 pointer-events-none"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Carbs Box */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-xs text-zinc-400 font-medium"&gt;Carbohidratos&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="my-2 flex items-baseline space-x-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-2xl font-bold text-amber-400"&gt;{metrics.eaten.carb}g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-xs text-zinc-500"&gt;/ {metrics.total.carb}g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="bg-amber-400 h-full transition-all duration-350" style={{ width: `${Math.min(metrics.pct.carb, 100)}%` }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-[10px] text-right text-amber-400 font-semibold mt-1"&gt;{metrics.pct.carb}%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-wheat-awn text-zinc-800/20 text-5xl absolute right-2 bottom-6 pointer-events-none"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Fats Box */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-xs text-zinc-400 font-medium"&gt;Grasas&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="my-2 flex items-baseline space-x-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-2xl font-bold text-red-400"&gt;{metrics.eaten.fat}g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-xs text-zinc-500"&gt;/ {metrics.total.fat}g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="bg-red-400 h-full transition-all duration-350" style={{ width: `${Math.min(metrics.pct.fat, 100)}%` }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-[10px] text-right text-red-400 font-semibold mt-1"&gt;{metrics.pct.fat}%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-droplet text-zinc-800/20 text-5xl absolute right-2 bottom-6 pointer-events-none"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{/* Timeline/List of Meals */}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;h3 className="text-lg font-bold text-white flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-list-check text-brand-500"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span&gt;Comidas del Día ({selectedDay})&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/h3&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>{Array.from({ length: MEALS_COUNT }).map((_, idx) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>const meal = getMealData(selectedDay, DAYS_CONFIG[selectedDay].type, idx);</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>if (!meal) return null;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>const isCompleted = !!completedMeals[`${selectedDay}-${idx}`];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>key={idx}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>className={`border transition duration-200 rounded-2xl p-5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 ${</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>isCompleted<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>? 'bg-zinc-900/40 border-brand-500/20 shadow-inner'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>: 'bg-zinc-900 border-zinc-800 hover:border-zinc-700'</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>{/* Time, Icon and Text details */}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div className="flex items-start space-x-4 flex-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;div className="flex flex-col items-center justify-center space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;span className="text-sm font-extrabold text-white tracking-wide bg-zinc-800 px-3 py-1 rounded-full"&gt;{meal.time}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;span className="text-[10px] text-zinc-500 font-semibold"&gt;{meal.name}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;div className={`p-3 bg-zinc-950 rounded-xl flex items-center justify-center ${meal.color}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;i className={`fa-solid ${meal.icon} text-lg`}&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;div className="space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;h4 className={`text-base font-bold transition duration-150 ${isCompleted ? 'text-zinc-500 line-through' : 'text-white'}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>{meal.name === 'Almuerzo Sólido' || meal.name === 'Cena Liviana' ? (</p>
+<p class="p1"><span class="Apple-converted-space">                                                                        </span>&lt;span&gt;{meal.name} &lt;span className="text-xs font-normal text-zinc-400"&gt;(Sólido)&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>) : meal.name}</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;p className="text-xs text-zinc-400 leading-relaxed max-w-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>{meal.description}</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>{/* Bullet points for items inside this meal */}</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;div className="flex flex-wrap gap-1.5 pt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>{meal.items.map((item, iIndex) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                                                        </span>&lt;span key={iIndex} className="text-[11px] bg-zinc-950 px-2 py-1 rounded-lg text-zinc-300 border border-zinc-800 flex items-center gap-1.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                            </span>&lt;span className="w-1 h-1 rounded-full bg-brand-500"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                            </span>{item}</p>
+<p class="p1"><span class="Apple-converted-space">                                                                        </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>{/* Macros breakdown of this specific meal and action check button */}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div className="flex lg:flex-col items-end justify-between w-full lg:w-auto pt-3 lg:pt-0 border-t lg:border-t-0 border-zinc-800 lg:space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;div className="flex gap-4 text-xs font-medium text-zinc-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;span className="flex flex-col items-start lg:items-end"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>&lt;span className="text-[10px] text-zinc-500"&gt;Calorías&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>&lt;strong className="text-zinc-200"&gt;{meal.kcal} kcal&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;span className="flex flex-col items-start lg:items-end"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>&lt;span className="text-[10px] text-zinc-500"&gt;Proteína&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>&lt;strong className="text-sky-400"&gt;{meal.prot}g&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;span className="flex flex-col items-start lg:items-end"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>&lt;span className="text-[10px] text-zinc-500"&gt;Carb / Grasas&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>&lt;strong className="text-zinc-300"&gt;{meal.carb}g / {meal.fat}g&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>onClick={() =&gt; toggleMeal(selectedDay, idx)}</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>className={`px-4 py-2 rounded-xl text-xs font-bold transition duration-150 flex items-center space-x-2 w-full lg:w-auto justify-center ${</p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>isCompleted<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>? 'bg-brand-500 text-zinc-950 hover:bg-brand-600'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                                    </span>: 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white'</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;i className={`fa-solid ${isCompleted ? 'fa-circle-check' : 'fa-circle'}`}&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                                </span>&lt;span&gt;{isCompleted ? 'Completado' : 'Marcar Consumo'}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>);</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>})}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{/* TAB: SHOPPING LIST */}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{activeTab === 'shopping' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;h3 className="text-xl font-bold text-white flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;i className="fa-solid fa-basket-shopping text-brand-500"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;span&gt;Lista de Compras Automática&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;p className="text-xs text-zinc-400 mt-1"&gt;Calculado de forma óptima para cubrir la semana completa (4 días Tipo A + 3 días Tipo B).&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onClick={() =&gt; window.print()}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="px-4 py-2 bg-zinc-850 hover:bg-zinc-750 transition text-xs font-semibold rounded-xl border border-zinc-700 flex items-center gap-2 text-zinc-200"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;i className="fa-solid fa-print"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;Imprimir Lista&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Fresh Food Shopping List */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;h4 className="text-base font-bold text-white border-b border-zinc-850 pb-3 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;🥩 Carnes, Frutas y Almidones&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full font-bold"&gt;ALIMENTOS FRESCOS&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/h4&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                            </span></p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="divide-y divide-zinc-850"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{shoppingList.fresh.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;div key={idx} className="py-3 flex justify-between items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;p className="text-sm font-semibold text-zinc-200"&gt;{item.name}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;p className="text-xs text-zinc-500"&gt;{item.detail}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;span className="bg-zinc-950 border border-zinc-800 text-xs font-bold text-brand-500 px-3 py-1 rounded-xl whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>{item.qty}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Herbalife Supplements Shopping List */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;h4 className="text-base font-bold text-white border-b border-zinc-850 pb-3 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;🥤 Nutrición Herbalife / Suplementos&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-[10px] bg-purple-950 text-purple-400 px-2 py-0.5 rounded-full font-bold"&gt;SUPLEMENTACIÓN&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/h4&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                            </span></p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="divide-y divide-zinc-850"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{shoppingList.supplements.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;div key={idx} className="py-3 flex justify-between items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;p className="text-sm font-semibold text-zinc-200"&gt;{item.name}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;p className="text-xs text-zinc-500"&gt;{item.detail}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;span className="bg-zinc-950 border border-zinc-800 text-xs font-bold text-purple-400 px-3 py-1 rounded-xl whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>{item.qty}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{/* Chef/Prep Tips for success */}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-brand-950/20 border border-brand-500/20 p-6 rounded-3xl space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;h4 className="text-base font-bold text-brand-400 flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-circle-info"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span&gt;Claves para el Éxito de la Preparación&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;li className="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-brand-500 font-bold"&gt;•&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;&lt;strong&gt;Pesaje en Crudo:&lt;/strong&gt; Las proteínas (pollo, carne, pescado) se deben pesar crudas antes de ir a la sartén o parrilla.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;li className="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-brand-500 font-bold"&gt;•&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;&lt;strong&gt;Organización Semanal (Meal Prep):&lt;/strong&gt; Cocina los camotes y porciona el pollo y pescado para 2 o 3 días. Consérvalos en recipientes herméticos.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;li className="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-brand-500 font-bold"&gt;•&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;&lt;strong&gt;Libre consumo vegetal:&lt;/strong&gt; Brócoli, pepino y espinaca aportan volumen gástrico para controlar la ansiedad sin apenas sumar calorías.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;li className="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-brand-500 font-bold"&gt;•&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;&lt;strong&gt;Hidratación clave:&lt;/strong&gt; Bebe de 2 a 3 litros de agua pura diarios además del Té verde y el CR7.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{/* TAB: PORTIONS SETTINGS */}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{activeTab === 'settings' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;h3 className="text-xl font-bold text-white flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-sliders text-brand-500"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span&gt;Configuración de Porciones de Proteína&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-xs text-zinc-400 mt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>Ajusta los gramos de tus proteínas sólidas. La aplicación calculará de inmediato los nuevos macros para el almuerzo y la cena de tus días tipo A y B.</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 space-y-8 max-w-2xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Chicken range */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;label className="text-sm font-bold text-zinc-200"&gt;🍗 Pechuga de Pollo (Día A - Almuerzo)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="bg-brand-950 text-brand-400 text-xs font-extrabold px-3 py-1 rounded-lg border border-brand-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>{portions.chicken}g</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="range"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>min="100"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>max="250"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>step="10"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={portions.chicken}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={(e) =&gt; setPortions({...portions, chicken: parseInt(e.target.value)})}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full accent-brand-500 h-2 bg-zinc-850 rounded-lg cursor-pointer"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between text-[10px] text-zinc-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;100g (mín.)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;Recomendado: 150g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;250g (máx.)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Beef range */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;label className="text-sm font-bold text-zinc-200"&gt;🥩 Bife de Carne Magra (Día B - Almuerzo)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="bg-brand-950 text-brand-400 text-xs font-extrabold px-3 py-1 rounded-lg border border-brand-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>{portions.beef}g</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="range"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>min="100"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>max="250"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>step="10"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={portions.beef}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={(e) =&gt; setPortions({...portions, beef: parseInt(e.target.value)})}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full accent-brand-500 h-2 bg-zinc-850 rounded-lg cursor-pointer"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between text-[10px] text-zinc-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;100g (mín.)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;Recomendado: 150g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;250g (máx.)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Fish range */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;label className="text-sm font-bold text-zinc-200"&gt;🐟 Pescado Blanco (Cena - Días A y B)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span className="bg-brand-950 text-brand-400 text-xs font-extrabold px-3 py-1 rounded-lg border border-brand-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>{portions.fish}g</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="range"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>min="100"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>max="250"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>step="10"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={portions.fish}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={(e) =&gt; setPortions({...portions, fish: parseInt(e.target.value)})}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full accent-brand-500 h-2 bg-zinc-850 rounded-lg cursor-pointer"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between text-[10px] text-zinc-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;100g (mín.)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;Recomendado: 150g&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;span&gt;250g (máx.)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* Safety warnings */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-zinc-950 p-4 rounded-2xl border border-zinc-850 flex items-start space-x-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;i className="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p className="text-xs text-zinc-400 leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;strong&gt;Nota sobre el déficit:&lt;/strong&gt; Aumentar los gramos de proteína incrementará el total calórico diario. Si tu meta estricta es mantenerte en un déficit de 1200 kcal, procura mantener las porciones recomendadas de 150 gramos.</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>root.render(&lt;App /&gt;);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
